@@ -478,9 +478,10 @@ body {
 .project-card {
     background: #f8fafc;
     border-radius: 12px;
-    overflow: hidden;
+    overflow: visible;
     border: 1px solid #e2e8f0;
     transition: all 0.3s ease;
+    padding-bottom: 20px;
 }
 
 .project-card:hover {
@@ -491,16 +492,16 @@ body {
 
 .project-image {
     display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 16px;
     background: none;
     padding: 0;
 }
+
 .project-image iframe {
-    flex: 1 1 45%;
-    min-width: 250px;
-    max-width: 100%;
-    height: 220px;
+    width: 100%;
+    min-width: 0;
+    height: 260px;
     border-radius: 12px 12px 0 0;
     background: #111;
     display: block;
