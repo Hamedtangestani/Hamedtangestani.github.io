@@ -885,16 +885,15 @@ body {
 
     .timeline-item:nth-child(odd) .timeline-content,
     .timeline-item:nth-child(even) .timeline-content {
-        margin-left: 50px;
+        margin-left: 50%;
         margin-right: 0;
-        padding-left: 30px;
-        padding-right: 20px;
+        padding-left: 40px;
         text-align: left;
     }
 
     .timeline-item:nth-child(odd) .timeline-content::before,
     .timeline-item:nth-child(even) .timeline-content::before {
-        left: -35px;
+        left: -60px;
     }
 
     .projects-grid {
