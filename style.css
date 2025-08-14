@@ -1129,21 +1129,28 @@ body {
         grid-template-columns: 1fr;
     }
 
+    /* Fix timeline for mobile */
+    .timeline {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
     .timeline::before {
         left: 20px;
     }
 
     .timeline-item:nth-child(odd) .timeline-content,
     .timeline-item:nth-child(even) .timeline-content {
-        margin-left: 50%;
+        margin-left: 40px;
         margin-right: 0;
-        padding-left: 40px;
+        padding-left: 20px;
         text-align: left;
+        width: calc(100% - 60px);
     }
 
     .timeline-item:nth-child(odd) .timeline-content::before,
     .timeline-item:nth-child(even) .timeline-content::before {
-        left: -60px;
+        left: -50px;
     }
 
     .projects-grid {
@@ -1175,6 +1182,32 @@ body {
         width: 100%;
         max-width: 250px;
         justify-content: center;
+    }
+
+    /* Additional mobile timeline fixes */
+    .timeline {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .timeline-content {
+        padding: 25px 20px;
+        margin-left: 35px;
+        width: calc(100% - 50px);
+    }
+
+    .timeline-content::before {
+        left: -45px;
+    }
+
+    .timeline-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .timeline-icon {
+        align-self: center;
     }
 
     .publication-item {
