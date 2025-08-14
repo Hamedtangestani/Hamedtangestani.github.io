@@ -106,6 +106,7 @@ body {
     background: white;
     position: relative;
     overflow: hidden;
+    padding-top: 70px; /* Account for fixed navigation height */
 }
 
 
