@@ -152,26 +152,69 @@ function revealTimelineItems() {
 
 // Initialize timeline animation
 document.addEventListener('DOMContentLoaded', () => {
-    const timelineItems = document.querySelectorAll('.timeline-item');
-    timelineItems.forEach(item => {
-        item.style.opacity = '0';
-        item.style.transform = 'translateX(-50px)';
-        item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    });
-    
-    // Trigger animation when timeline section is visible
-    const timelineObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                revealTimelineItems();
-                timelineObserver.unobserve(entry.target);
-            }
+    try {
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        
+        // Force timeline items to be visible immediately for testing
+        timelineItems.forEach(item => {
+            item.style.opacity = '1';
+            item.style.transform = 'translateX(0)';
+            item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         });
-    }, { threshold: 0.3 });
-    
-    const experienceSection = document.querySelector('#experience');
-    if (experienceSection) {
-        timelineObserver.observe(experienceSection);
+        
+        // Trigger animation when timeline section is visible
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    revealTimelineItems();
+                    timelineObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        const experienceSection = document.querySelector('#experience');
+        
+        if (experienceSection) {
+            // Force the experience section to be visible
+            experienceSection.style.display = 'block';
+            experienceSection.style.visibility = 'visible';
+            experienceSection.style.opacity = '1';
+            
+            timelineObserver.observe(experienceSection);
+            
+            // Fallback: ensure timeline items are visible after a delay
+            // This helps with mobile devices where intersection observer might not work properly
+            setTimeout(() => {
+                const hiddenItems = document.querySelectorAll('.timeline-item[style*="opacity: 0"]');
+                if (hiddenItems.length > 0) {
+                    revealTimelineItems();
+                }
+            }, 2000); // 2 second fallback
+            
+            // Additional fallback for mobile devices
+            // Check if we're on a mobile device and ensure visibility
+            const isMobile = window.innerWidth <= 768;
+            
+            if (isMobile) {
+                setTimeout(() => {
+                    const stillHiddenItems = document.querySelectorAll('.timeline-item[style*="opacity: 0"]');
+                    if (stillHiddenItems.length > 0) {
+                        stillHiddenItems.forEach(item => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateX(0)';
+                        });
+                    }
+                }, 3000); // 3 second mobile fallback
+            }
+        }
+    } catch (error) {
+        console.error('Error initializing timeline animation:', error);
+        // Fallback: try to make all timeline items visible
+        const allTimelineItems = document.querySelectorAll('.timeline-item');
+        allTimelineItems.forEach(item => {
+            item.style.opacity = '1';
+            item.style.transform = 'translateX(0)';
+        });
     }
 });
 
@@ -203,6 +246,45 @@ window.addEventListener('scroll', () => {
     if (hero) {
         const rate = scrolled * -0.5;
         hero.style.transform = `translateY(${rate}px)`;
+    }
+});
+
+// Image modal functionality
+const modal = document.getElementById('imageModal');
+const modalImg = document.getElementById('modalImage');
+const closeBtn = document.querySelector('.modal-close');
+
+// Make all project images clickable
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.project-image-file').forEach(img => {
+        img.addEventListener('click', function() {
+            modal.style.display = 'block';
+            modalImg.src = this.src;
+            modalImg.alt = this.alt;
+        });
+    });
+});
+
+// Close modal when clicking the close button
+if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+}
+
+// Close modal when clicking outside the image
+if (modal) {
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+}
+
+// Close modal with ESC key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal && modal.style.display === 'block') {
+        modal.style.display = 'none';
     }
 });
 

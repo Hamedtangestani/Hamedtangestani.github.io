@@ -389,6 +389,50 @@ body {
 .experience {
     padding: 100px 0;
     background: #f8fafc;
+    display: block !important;
+    visibility: visible !important;
+    min-height: 100px;
+    position: relative;
+    overflow: visible;
+    z-index: 1;
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: auto;
+    bottom: auto;
+}
+
+/* Force experience section to be visible - highest priority */
+body .experience,
+html .experience,
+* .experience {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 100px !important;
+    overflow: visible !important;
+    z-index: 1 !important;
+}
+
+.experience .container {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    overflow: visible !important;
+}
+
+.experience .section-title {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
 .timeline {
@@ -396,6 +440,8 @@ body {
     max-width: 900px;
     margin: 0 auto;
     padding-left: 50px;
+    display: block;
+    visibility: visible;
 }
 
 .timeline::before {
@@ -411,6 +457,9 @@ body {
 .timeline-item {
     position: relative;
     margin-bottom: 60px;
+    /* Ensure timeline items are visible by default */
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .timeline-content {
@@ -1133,10 +1182,41 @@ body {
     .timeline {
         padding-left: 20px;
         padding-right: 20px;
+        display: block !important;
+        visibility: visible !important;
     }
 
     .timeline::before {
         left: 20px;
+    }
+
+    /* Ensure experience section is visible on mobile */
+    .experience {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+        left: 0 !important;
+        right: 0 !important;
+        top: auto !important;
+        bottom: auto !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 100px !important;
+        overflow: visible !important;
+        z-index: 1 !important;
+    }
+
+    .timeline-item {
+        opacity: 1 !important;
+        transform: translateX(0) !important;
+        display: block !important;
+        visibility: visible !important;
+        position: relative !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
     }
 
     .timeline-item:nth-child(odd) .timeline-content,
@@ -1188,9 +1268,44 @@ body {
     .timeline {
         padding-left: 15px;
         padding-right: 15px;
+        display: block !important;
+        visibility: visible !important;
+    }
+
+    /* Ensure experience section is visible on small mobile */
+    .experience {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+        left: 0 !important;
+        right: 0 !important;
+        top: auto !important;
+        bottom: auto !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 100px !important;
+        overflow: visible !important;
+        z-index: 1 !important;
+    }
+
+    .timeline-item {
+        opacity: 1 !important;
+        transform: translateX(0) !important;
+        display: block !important;
+        visibility: visible !important;
+        position: relative !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
     }
 
     .timeline-content {
+        opacity: 1 !important;
+        transform: translateX(0) !important;
+        display: block !important;
+        visibility: visible !important;
         padding: 25px 20px;
         margin-left: 35px;
         width: calc(100% - 50px);
